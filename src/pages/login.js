@@ -1,8 +1,11 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+//Components
 import FormInput from '../components/formInput';
-import { useFormik } from 'formik';
+import SubmitButton from '../components/submitButton';
+import ParagraphLink from '../components/paragraphLink';
+//Formik
 import * as Yup from 'yup';
+import { useFormik } from 'formik';
 
 const Login = () => {
 
@@ -30,16 +33,8 @@ const Login = () => {
             >
                 <FormInput formik={formik} label="Username" id="username" placeholder="Username"/>
                 <FormInput formik={formik} label="Password" id="password" placeholder="Password" type="password"/>
-                <button 
-                    type="submit"
-                    className="block w-full bg-green-400 text-white uppercase font-bold py-2 focus:outline-none focus:bg-green-500 rounded mt-4"
-                >Enter</button>
-                <p className="text-sm font-semibold text-gray mt-4">
-                    Do not have an account? &nbsp; 
-                    <span className="text-lightblue">
-                        <Link to="/signup">Sign up</Link>
-                    </span>
-                </p>
+                <SubmitButton text="Enter"/>
+                <ParagraphLink text="Don't you have an account?" href="/signup" linkText="Sign Up"/>
             </form>
         </div>
     )
