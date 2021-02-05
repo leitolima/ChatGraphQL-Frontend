@@ -4,3 +4,31 @@
 body{
     background: #fafafa;
 }
+/* Colors */
+.bg-blue{background-color: #002D40;}
+.text-blue{color: #002D40;}
+.border-blue{border-color: #002D40;}
+.hover\:bg-blue:hover{background-color: #002D40;}
+.hover\:text-blue:hover{color: #002D40;}
+
+.bg-lightblue{background-color: #1AA6B7;}
+.text-lightblue{color: #1AA6B7;}
+.border-lightblue{border-color: #1AA6B7;}
+.hover\:bg-lightblue:hover{background-color: #1AA6B7;}
+.hover\:text-lightblue:hover{color: #1AA6B7;}
+
+.bg-iceberg{background-color: #D9ECF2;}
+.text-iceberg{color: #D9ECF2;}
+.border-iceberg{border-color: #D9ECF2;}
+.hover\:bg-iceberg:hover{background-color: #D9ECF2;}
+.hover\:text-iceberg:hover{color: #D9ECF2;}
+
+.bg-gray{background-color: #ecf2f3;}
+.text-gray{color: #ecf2f3;}
+.border-gray{border-color: #ecf2f3;}
+.hover\:bg-gray:hover{background-color: #ecf2f3;}
+.hover\:text-gray:hover{color: #ecf2f3;}
+
+.bg-dark-1{background-color: #171D20;}
+.bg-dark-2{background-color: #1E2529;}
+.bg-dark-3{background-color: rgba(0, 0, 0, 0.1);}
