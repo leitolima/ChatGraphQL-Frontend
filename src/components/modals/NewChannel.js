@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react';
 import UserContext from '../../context/userContext';
+import { useHistory } from 'react-router-dom';
 //Components
 import FormInput from '../formInput';
 import SubmitButton from '../submitButton';
@@ -11,6 +12,8 @@ import { useMutation } from '@apollo/client';
 import { CREATE_NEW_CHANNEL } from '../../graphql/mutations';
 
 const NewChannel = ({show, closeModal}) => {
+
+    const history = useHistory();
 
     const [error, setError] = useState(null);
     const [createNewChannel] = useMutation(CREATE_NEW_CHANNEL);
@@ -38,6 +41,7 @@ const NewChannel = ({show, closeModal}) => {
                 });
                 newChannel(channel);
                 closeModal();
+                history.push(`/channel/${channel.id}`);
             } catch (err) {
                 setError(err.message.replace('Error: ', ''));
             }
