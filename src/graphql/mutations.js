@@ -14,6 +14,10 @@ export const LOG_IN = gql`
             lastname
             username
             image
+            channels{
+                id
+                name
+            }
         }
     }
 `;
