@@ -15,6 +15,7 @@ const UserState = ({ children }) => {
         username: '',
         image: '',
         channels: [],
+        channel: null,
         favorites: []
     }
 
