@@ -1,32 +1,28 @@
-import React from 'react'
+import React, { useContext } from 'react';
+import UserContext from '../../context/userContext';
+import ItemAbout from './ItemAbout';
 
 const About = () => {
+
+    const context = useContext(UserContext);
+    const { channel } = context;
+
     return (
         <aside className="w-1/4 bg-gray px-4 py-4">
             <div className="bg-white border border-gray-300 rounded">
                 <header className="p-3">
                     <h1 className="text-2xl tracking-normal font-bold text-gray-700">
-                        About #JavaScript
+                        About Channel
                     </h1>
                 </header>
                 <ul className="list-none text-gray-500">
-                    <li className="w-full border-t border-gray-300 px-4 py-2 text-gray-600 font-semibold">
-                        <i className="fas fa-caret-down mr-5"></i>
-                        <i className="fas fa-info mr-2"></i>
-                        Channel details
-                        <div className="text-gray-600 font-normal mt-2 pb-2">
-                            <p className="">For users who loves Javascript</p>
-                        </div>
-                    </li>
-                    <li className="w-full border-t border-gray-300 px-4 py-2 font-semibold">
-                        <i className="fas fa-caret-right mr-5"></i>
-                        <i className="fas fa-pen-fancy mr-2"></i>
-                        Created By
-                        <div className="hidden text-gray-600 font-normal mt-2 pb-2">
-                            <p className="font-semibold">Leytholima</p>
-                            <p className="">Leonel Lima</p>
-                        </div>
-                    </li>
+                    <ItemAbout icon="info" title="Channel details">
+                        <p className="">{channel && channel.description}</p>
+                    </ItemAbout>
+                    <ItemAbout icon="pen-fancy" title="Created By">
+                        <p className="capitalize font-semibold">{channel && channel.creator.username}</p>
+                        <p className="capitalize">{channel && channel.creator.name} {channel && channel.creator.lastname}</p>
+                    </ItemAbout>
                 </ul>
             </div>
         </aside>

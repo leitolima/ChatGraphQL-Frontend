@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react';
 import UserContext from '../context/userContext';
+import { Link } from 'react-router-dom';
 //Modal
 import NewChannel from './modals/NewChannel';
 
@@ -44,7 +45,7 @@ const Aside = () => {
                 <nav className="list-none mt-2">
                     {
                         channels.length ? channels.map(c => (
-                            <li key={c.id}># {c.name}</li>
+                            <li key={c.id}><Link to={`/channel/${c.id}`}># {c.name}</Link></li>
                         )) : <li>No channels yet</li>
                     }
                 </nav>

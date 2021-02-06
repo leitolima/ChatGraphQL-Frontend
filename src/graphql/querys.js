@@ -15,3 +15,25 @@ export const GET_USER = gql`
         }
     }
 `;
+
+export const GET_CHANNEL = gql`
+    query getChannel($id: ID){
+        channel: getChannel(id: $id){
+            id
+            name
+            description
+            creator{
+                name
+                lastname
+                username
+                image
+            }
+            members{
+                name
+                lastname
+                username
+                image
+            }
+        }
+    }
+`;

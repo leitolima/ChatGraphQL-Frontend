@@ -8,9 +8,10 @@ import withAuth from './withAuth';
 import Layout from './components/Layout';
 import Login from './pages/login';
 import SignUp from './pages/signup';
-import Home from './pages/Home';
+import NoChat from './components/chat/NoChat';
+import Channel from './pages/Channel';
 
-const App = () => {
+const App = (props) => {
     return (
         <ApolloProvider client={client}>
             <UserState>
@@ -19,7 +20,8 @@ const App = () => {
                         <Route exact path="/login" component={Login}/>
                         <Route exact path="/signup" component={SignUp}/>
                         <Layout>
-                            <Route exact path="/" component={withAuth(Home)}/>
+                            <Route exact path="/" component={withAuth(NoChat)}/>
+                            <Route exact path="/channel/:id" component={withAuth(Channel)}/>
                         </Layout>
                     </Switch>
                 </Router>
