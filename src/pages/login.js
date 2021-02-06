@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useState, useContext } from 'react';
+import UserContext from '../context/userContext';
+import { useHistory } from 'react-router-dom';
 //Components
 import FormInput from '../components/formInput';
 import SubmitButton from '../components/submitButton';
@@ -6,8 +8,18 @@ import ParagraphLink from '../components/paragraphLink';
 //Formik
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
+//Graphql
+import { useMutation } from '@apollo/client';
+import { LOG_IN } from '../graphql/mutations';
 
 const Login = () => {
+
+    const history = useHistory();
+    const context = useContext(UserContext);
+    const { loginUser } = context;
+    const [error, setError] = useState(null);
+
+    const [logIn] = useMutation(LOG_IN);
 
     const formik = useFormik({
         initialValues: {
@@ -21,7 +33,16 @@ const Login = () => {
                 .required('Password is required')
         }),
         onSubmit: async values => {
-            console.log(values);
+            setError(null);
+            try {
+                const { data } = await logIn({ variables: { input: values } });
+                loginUser(data.user);
+                setTimeout(() => {
+                    history.push('/');
+                }, [1500])
+            } catch (err) {
+                setError(err.message.replace('Error: ', ''));
+            }
         }
     })
 

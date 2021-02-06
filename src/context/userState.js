@@ -2,6 +2,10 @@ import React, { useReducer } from 'react';
 //Context
 import UserContext from './userContext';
 import UserReducer from './userReducer';
+//Types
+import {
+    LOGIN_USER
+} from '../types'
 
 const UserState = ({ children }) => {
     const initialState = {
@@ -16,6 +20,13 @@ const UserState = ({ children }) => {
 
     const [state, dispatch] = useReducer(UserReducer, initialState);
 
+    const loginUser = user => {
+        dispatch({
+            type: LOGIN_USER,
+            payload: user
+        })
+    }
+
     return (
         <UserContext.Provider
             value={{
@@ -25,7 +36,8 @@ const UserState = ({ children }) => {
                 username: state.username,
                 image: state.image,
                 chats: state.chats,
-                chat: state.chat
+                chat: state.chat,
+                loginUser
             }}
         >
             { children }
