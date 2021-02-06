@@ -8,6 +8,10 @@ export const GET_USER = gql`
             lastname
             username
             image
+            channels{
+                id
+                name
+            }
         }
     }
 `;

@@ -1,7 +1,12 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import UserContext from '../context/userContext';
+//Modal
+import NewChannel from './modals/NewChannel';
 
 const Aside = () => {
+
+    const [showModal, setShowModal] = useState(false);
+    const closeModal = () => setShowModal(false);
 
     const context = useContext(UserContext);
     const { username, image, channels, favorites } = context;
@@ -34,16 +39,17 @@ const Aside = () => {
                 <h2 className="text-xl uppercase font-semibold">
                     <i className="fas fa-exchange-alt mr-2"></i>
                     Channels ({channels.length})
-                    <i className="fas fa-plus ml-4"></i>
+                    <i className="fas fa-plus ml-4 cursor-pointer" onClick={() => setShowModal(true)}></i>
                 </h2>
                 <nav className="list-none mt-2">
                     {
                         channels.length ? channels.map(c => (
-                            <li># JavaScript</li>
+                            <li key={c.id}># {c.name}</li>
                         )) : <li>No channels yet</li>
                     }
                 </nav>
             </div>
+            {showModal && <NewChannel show={showModal} closeModal={closeModal}/>}
         </aside>
     )
 }

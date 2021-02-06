@@ -1,6 +1,8 @@
 //Types
 import {
-    LOGIN_USER
+    LOGIN_USER,
+    SELECT_CHANNEL,
+    ADD_NEW_CHANNEL
 } from '../types'
 
 const UserReducer = (state, action) => {
@@ -13,9 +15,19 @@ const UserReducer = (state, action) => {
                 name: action.payload.name,
                 lastname: action.payload.lastname,
                 username: action.payload.username,
-                image: action.payload.image
+                image: action.payload.image,
+                channels: action.payload.channels
             }
-
+        case ADD_NEW_CHANNEL:
+            return {
+                ...state,
+                channels: [state.channels, action.payload]
+            }
+        case SELECT_CHANNEL:
+            return {
+                ...state,
+                channel: action.payload
+            }
         default:
             return { ...state }
     }

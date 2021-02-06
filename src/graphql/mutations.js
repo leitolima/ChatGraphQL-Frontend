@@ -17,3 +17,29 @@ export const LOG_IN = gql`
         }
     }
 `;
+
+export const CREATE_NEW_CHANNEL = gql`
+    mutation createNewChannel($input: ChannelInput){
+        channel: createNewChannel(input: $input){
+            id
+            name
+            description
+            creator{ 
+                username 
+                image 
+            }
+            members{ 
+                username 
+                image 
+            }
+            messages{
+                user{ 
+                    username 
+                    image 
+                }
+                text
+                media
+            }
+        }
+    }
+`;

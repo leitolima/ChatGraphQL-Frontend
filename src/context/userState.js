@@ -4,7 +4,9 @@ import UserContext from './userContext';
 import UserReducer from './userReducer';
 //Types
 import {
-    LOGIN_USER
+    LOGIN_USER,
+    SELECT_CHANNEL,
+    ADD_NEW_CHANNEL
 } from '../types'
 
 const UserState = ({ children }) => {
@@ -28,6 +30,17 @@ const UserState = ({ children }) => {
         })
     }
 
+    const newChannel = channel => {
+        dispatch({
+            type: ADD_NEW_CHANNEL,
+            payload: channel
+        });
+        dispatch({
+            type: SELECT_CHANNEL,
+            payload: channel
+        })
+    }
+
     return (
         <UserContext.Provider
             value={{
@@ -38,7 +51,8 @@ const UserState = ({ children }) => {
                 image: state.image,
                 channels: state.channels,
                 favorites: state.favorites,
-                loginUser
+                loginUser,
+                newChannel
             }}
         >
             { children }
