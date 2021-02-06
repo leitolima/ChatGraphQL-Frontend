@@ -21,7 +21,7 @@ const UserReducer = (state, action) => {
         case ADD_NEW_CHANNEL:
             return {
                 ...state,
-                channels: [state.channels, action.payload]
+                channels: [...state.channels, action.payload]
             }
         case SELECT_CHANNEL:
             return {

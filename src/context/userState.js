@@ -35,6 +35,9 @@ const UserState = ({ children }) => {
             type: ADD_NEW_CHANNEL,
             payload: channel
         });
+    }
+
+    const selectChannel = channel => {
         dispatch({
             type: SELECT_CHANNEL,
             payload: channel
@@ -51,8 +54,10 @@ const UserState = ({ children }) => {
                 image: state.image,
                 channels: state.channels,
                 favorites: state.favorites,
+                channel: state.channel,
                 loginUser,
-                newChannel
+                newChannel,
+                selectChannel
             }}
         >
             { children }
