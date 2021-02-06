@@ -1,6 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react';
+import UserContext from '../context/userContext';
 
 const Aside = () => {
+
+    const context = useContext(UserContext);
+    const { username, image, channels, favorites } = context;
+
     return (
         <aside className="w-1/4 bg-dark-1 py-14 px-8 text-gray">
             <div>
@@ -9,8 +14,8 @@ const Aside = () => {
                     Chat App
                 </h1>
                 <div className="flex flex-row items-center mt-3">
-                    <img src="https://res.cloudinary.com/dspswtipv/image/upload/v1608780067/cihpcvkxc20fmniyltnq.png" className="w-12 h-12 rounded-full" alt=""/>
-                    <p className="font-semibold text-lg ml-2">Leytholima</p>
+                    <img src={image} className="w-12 h-12 rounded-full" alt=""/>
+                    <p className="font-semibold text-lg ml-2 capitalize">{username}</p>
                 </div>
             </div>
             <div className="mt-14">
@@ -18,22 +23,29 @@ const Aside = () => {
                     <i className="fas fa-star mr-2"></i>Favorites
                 </h2>
                 <nav className="list-none mt-2">
-                    <li># JavaScript</li>
+                    {
+                        favorites.length ? favorites.map(c => (
+                            <li># JavaScript</li>
+                        )) : <li>Add a channel to fav</li>
+                    }
                 </nav>
             </div>
             <div className="mt-14">
                 <h2 className="text-xl uppercase font-semibold">
                     <i className="fas fa-exchange-alt mr-2"></i>
-                    Channels (2)
+                    Channels ({channels.length})
                     <i className="fas fa-plus ml-4"></i>
                 </h2>
                 <nav className="list-none mt-2">
-                    <li># JavaScript</li>
-                    <li># React</li>
+                    {
+                        channels.length ? channels.map(c => (
+                            <li># JavaScript</li>
+                        )) : <li>No channels yet</li>
+                    }
                 </nav>
             </div>
         </aside>
     )
 }
 
-export default Aside
+export default Aside;

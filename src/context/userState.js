@@ -14,8 +14,8 @@ const UserState = ({ children }) => {
         lastname: '',
         username: '',
         image: '',
-        chats: [],
-        chat: []
+        channels: [],
+        favorites: []
     }
 
     const [state, dispatch] = useReducer(UserReducer, initialState);
@@ -35,8 +35,8 @@ const UserState = ({ children }) => {
                 lastname: state.lastname,
                 username: state.username,
                 image: state.image,
-                chats: state.chats,
-                chat: state.chat,
+                channels: state.channels,
+                favorites: state.favorites,
                 loginUser
             }}
         >

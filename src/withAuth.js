@@ -3,18 +3,19 @@ import { Redirect } from 'react-router-dom';
 import UserContext from './context/userContext';
 //GraphQL
 import { useQuery } from '@apollo/client';
+import { GET_USER } from './graphql/querys';
 
 const withAuth = ( Component ) => {
     return (() => {
         const context = useContext(UserContext);
-        const { authenticate } = context;
+        const { loginUser } = context;
 
-        const {data, loading, error} = useQuery(GET_USER_DATA);
+        const {data, loading, error} = useQuery(GET_USER);
 
         useEffect(() => {
             if(data){
                 if(data.user){
-                    authenticate(data.user);
+                    loginUser(data.user);
                 } else {
                     <Redirect to='/login'/>
                 }

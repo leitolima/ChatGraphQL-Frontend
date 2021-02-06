@@ -1,7 +1,7 @@
 import React from 'react';
 import Aside from '../components/Aside';
 import Chat from '../components/chat';
-import About from '../components/About';
+import About from '../components/chat/About';
 
 const Home = () => {
     return (
