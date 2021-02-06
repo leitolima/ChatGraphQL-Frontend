@@ -1,12 +1,15 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Aside from '../components/Aside';
+import Chat from '../components/chat';
+import About from '../components/About';
 
 const Home = () => {
     return (
-        <div>
-            <Link to='/login'>Login</Link>
-            <Link to='/signup'>Signup</Link>
-        </div>
+        <section className="container mx-auto flex flex-row h-screen">
+            <Aside />
+            <Chat />
+            <About />
+        </section>
     )
 }
 
