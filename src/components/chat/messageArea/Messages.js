@@ -1,13 +1,15 @@
 import React from 'react';
 import Message from './Message';
+import NoMessages from './NoMessages';
 
 const Messages = ({ msgs }) => {
     return (
         <>
             {
-                msgs.map(m => (
+                msgs.length > 0
+                ? msgs.map(m => (
                     <Message key={m.id} msg={m}/>
-                ))
+                )) : <NoMessages />
             }
         </>
     )
