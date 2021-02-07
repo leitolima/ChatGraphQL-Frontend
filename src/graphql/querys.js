@@ -29,8 +29,19 @@ export const GET_CHANNEL = gql`
                 image
             }
             members{
-                name
-                lastname
+                username
+                image
+            }
+        }
+    }
+`;
+
+export const GET_MESSAGES = gql`
+    query getMessages($id: ID){
+        messages: getMessages(id: $id){
+            id
+            text
+            user{
                 username
                 image
             }

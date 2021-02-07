@@ -1,19 +1,44 @@
-import React, { useContext } from 'react';
-import InputArea from './InputArea';
+import React, { useContext, useEffect } from 'react';
 import UserContext from '../../../context/userContext';
+//Components
+import Messages from './Messages';
+import InputArea from './InputArea';
+//GraphQL
+import { useLazyQuery } from '@apollo/client';
+import { GET_MESSAGES } from '../../../graphql/querys';
 
 const MessageArea = () => {
 
     const context = useContext(UserContext);
     const { channel } = context;
 
+    const [toDo, { data }] = useLazyQuery(GET_MESSAGES, {
+        variables: {
+            id: channel.id
+        }
+    });
+
+    useEffect(() => {
+        fetchMessages();
+    }, [channel]);
+
+    const fetchMessages = async () => {
+        toDo();
+    }
+
     return (
-        <div className="flex flex-col flex-1 bg-white border border-gray-300 mt-3">
-            <div className="w-full flex-1"></div>
+        <>
+            <div id="message_area" className="w-full flex-grow overflow-y-scroll">
+                {
+                    data && data.messages 
+                    ? <Messages msgs={data.messages}/>
+                    : null
+                }
+            </div>
             {
                 channel ? <InputArea /> : null
             }
-        </div>
+        </>
     )
 }
 
