@@ -47,3 +47,12 @@ export const CREATE_NEW_CHANNEL = gql`
         }
     }
 `;
+
+export const SEND_NEW_MESSAGE = gql`
+    mutation sendNewMessage($input: String, $id: ID){
+        message: sendNewMessage(input: $input, id: $id){
+            id
+            text
+        }
+    }
+`;
