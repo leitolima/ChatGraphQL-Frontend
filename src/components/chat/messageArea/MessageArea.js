@@ -10,12 +10,10 @@ import { GET_MESSAGES } from '../../../graphql/querys';
 const MessageArea = () => {
 
     const context = useContext(UserContext);
-    const { channel } = context;
+    const { channel: { id } } = context;
 
     const { data } = useQuery(GET_MESSAGES, {
-        variables: {
-            id: channel.id
-        }
+        variables: { id }
     });
 
     return (
@@ -27,9 +25,7 @@ const MessageArea = () => {
                     : null
                 }
             </div>
-            {
-                channel ? <InputArea /> : null
-            }
+            <InputArea />
         </>
     )
 }

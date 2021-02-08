@@ -11,10 +11,17 @@ const Chat = () => {
 
     return (
         <article className="w-1/2 bg-gray px-4 py-4 flex flex-col h-screen">
-            <Header />
-            <section className="flex flex-col overflow-y-auto flex-1 max-h-screen bg-white border border-gray-300 mt-3">
-                { channel ? <MessageArea /> : null }
-            </section>
+            {
+                channel 
+                ? <>
+                    <Header />
+                    <section className="flex flex-col overflow-y-auto flex-1 max-h-screen bg-white border border-gray-300 mt-3">
+                        <MessageArea />
+                    </section>
+                </>
+                :null
+            }
+            
         </article>
     )
 }
