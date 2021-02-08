@@ -1,28 +1,44 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import UserContext from '../../context/userContext';
 //Components
 import Header from './Header';
 import MessageArea from './messageArea/MessageArea';
+import JoinToChannel from '../modals/JoinToChannel';
 
 const Chat = () => {
 
+    const [showModal, setShowModal] = useState(false);
+    const closeModal = () => setShowModal(false);
+
     const context = useContext(UserContext);
-    const { channel } = context;
+    const { channel, channels } = context;
+
+    useEffect(() => {
+        if(channel){
+            const { id } = channel;
+            console.log(channels);
+            const index = channels.findIndex(e => e.id == id);
+            if(index == -1){
+                setShowModal(true);
+            }
+        }
+    }, [channel]);
 
     return (
-        <article className="w-1/2 bg-gray px-4 py-4 flex flex-col h-screen">
+        <section className="w-1/2 bg-gray px-4 py-4 flex flex-col h-screen">
             {
                 channel 
                 ? <>
                     <Header />
-                    <section className="flex flex-col overflow-y-auto flex-1 max-h-screen bg-white border border-gray-300 mt-3">
+                    <article className="flex flex-col overflow-y-auto flex-1 max-h-screen bg-white border border-gray-300 mt-3">
                         <MessageArea />
-                    </section>
+                    </article>
+                    {showModal && <JoinToChannel show={showModal} closeModal={closeModal}/>}
                 </>
                 :null
             }
             
-        </article>
+        </section>
     )
 }
 

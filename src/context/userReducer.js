@@ -2,7 +2,8 @@
 import {
     LOGIN_USER,
     SELECT_CHANNEL,
-    ADD_NEW_CHANNEL
+    ADD_NEW_CHANNEL,
+    JOIN_TO_CHANNEL
 } from '../types'
 
 const UserReducer = (state, action) => {
@@ -21,12 +22,24 @@ const UserReducer = (state, action) => {
         case ADD_NEW_CHANNEL:
             return {
                 ...state,
-                channels: [...state.channels, action.payload]
+                channels: [...state.channels, {
+                    id:  action.payload.id,
+                    name:  action.payload.name
+                }]
             }
         case SELECT_CHANNEL:
             return {
                 ...state,
                 channel: action.payload
+            }
+        case JOIN_TO_CHANNEL:
+            return {
+                ...state,
+                channels: [...state.channels, action.payload],
+                channel: {
+                    ...state.channel, 
+                    members: action.payload.members
+                }
             }
         default:
             return { ...state }

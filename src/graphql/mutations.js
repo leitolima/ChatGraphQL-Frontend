@@ -56,3 +56,16 @@ export const SEND_NEW_MESSAGE = gql`
         }
     }
 `;
+
+export const JOIN_TO_CHANNEL = gql`
+    mutation joinToChannel($id: ID){
+        channel: joinToChannel(id: $id){
+            id
+            name
+            members{
+                username
+                image
+            }
+        }
+    }
+`;

@@ -3,10 +3,10 @@ import Aside from './Aside'
 
 const Layout = ({children}) => {
     return (
-        <section className="container mx-auto flex flex-row h-screen">
+        <main className="container mx-auto flex flex-row h-screen">
             <Aside />
             {children}
-        </section>
+        </main>
     )
 }
 

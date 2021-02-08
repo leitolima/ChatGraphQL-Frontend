@@ -6,7 +6,8 @@ import UserReducer from './userReducer';
 import {
     LOGIN_USER,
     SELECT_CHANNEL,
-    ADD_NEW_CHANNEL
+    ADD_NEW_CHANNEL,
+    JOIN_TO_CHANNEL
 } from '../types'
 
 const UserState = ({ children }) => {
@@ -44,6 +45,13 @@ const UserState = ({ children }) => {
         })
     }
 
+    const joinToChannel = channel => {
+        dispatch({
+            type: JOIN_TO_CHANNEL,
+            payload: channel
+        });
+    } 
+
     return (
         <UserContext.Provider
             value={{
@@ -57,7 +65,8 @@ const UserState = ({ children }) => {
                 channel: state.channel,
                 loginUser,
                 newChannel,
-                selectChannel
+                selectChannel,
+                joinToChannel
             }}
         >
             { children }
