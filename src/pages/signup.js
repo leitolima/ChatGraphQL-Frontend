@@ -52,10 +52,10 @@ const SignUp = () => {
     })
 
     return (
-        <div className="w-full bg-dark-1 h-screen flex justify-center items-center">
+        <div className="w-full bg-dark-1 h-screen flex justify-center items-center p-2">
             <form
                 onSubmit={formik.handleSubmit} 
-                className="bg-dark-2 w-1/3 border border-gray-700 py-10 px-5 rounded"
+                className="bg-dark-2 w-full sm:w-3/4 md:w-1/2 lg:w-1/3 border border-gray-700 py-10 px-5 rounded"
             >
                 <FormInput formik={formik} label="Name" id="name" placeholder="Name" css="capitalize"/>
                 <FormInput formik={formik} label="Lastname" id="lastname" placeholder="Lastname" css="capitalize"/>

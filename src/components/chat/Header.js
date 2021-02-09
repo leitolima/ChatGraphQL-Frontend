@@ -8,7 +8,7 @@ const Header = () => {
 
     return (
         <header className="py-3 px-5 bg-white border border-gray-300">
-            <h1 className="text-3xl tracking-normal font-bold text-gray-700">
+            <h1 className="text-xl lg:text-3xl tracking-normal font-bold text-gray-700">
                 {channel && channel.name}
                 <i className="far fa-star text-gray-700 ml-2 cursor-pointer"></i>
             </h1>

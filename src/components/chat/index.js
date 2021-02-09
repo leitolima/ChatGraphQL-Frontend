@@ -25,7 +25,7 @@ const Chat = () => {
     }, [channel]);
 
     return (
-        <section className="w-1/2 bg-gray px-4 py-4 flex flex-col h-screen">
+        <section className="w-full md:w-3/4 lg:w-1/2 bg-gray px-4 py-4 flex flex-col h-screen">
             {
                 channel 
                 ? <>
