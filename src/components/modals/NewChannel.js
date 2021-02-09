@@ -49,7 +49,7 @@ const NewChannel = ({show, closeModal}) => {
     })
 
     return (
-        <section className={`${show ? 'flex' : 'hideen'} fixed w-full h-screen top-0 left-0 justify-center items-center p-2`}>
+        <section className={`${show ? 'flex' : 'hideen'} fixed w-full h-screen top-0 left-0 justify-center items-center`}>
             <div className={`${show ? 'block' : 'hidden'} w-full h-full bg-black opacity-50 z-20`} onClick={closeModal}></div>
             <form 
                 onSubmit={formik.handleSubmit} 
