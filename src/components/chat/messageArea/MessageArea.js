@@ -1,11 +1,12 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import UserContext from '../../../context/userContext';
 //Components
 import Messages from './Messages';
 import InputArea from './InputArea';
 //GraphQL
-import { useQuery } from '@apollo/client';
+import { useQuery, useSubscription } from '@apollo/client';
 import { GET_MESSAGES } from '../../../graphql/querys';
+import { SUBCRIPTION } from '../../../graphql/subscription';
 
 const MessageArea = () => {
 
@@ -15,6 +16,9 @@ const MessageArea = () => {
     const { data } = useQuery(GET_MESSAGES, {
         variables: { id }
     });
+
+    const { data: datamessages } = useSubscription(SUBCRIPTION);
+    console.log(datamessages);
 
     return (
         <>

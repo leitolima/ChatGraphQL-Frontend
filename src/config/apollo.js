@@ -1,29 +1,47 @@
-import { ApolloClient, InMemoryCache, createHttpLink, ApolloLink } from '@apollo/client';
-import fetch from 'node-fetch';
+import { ApolloClient, InMemoryCache, split, HttpLink, ApolloLink } from '@apollo/client';
+import { getMainDefinition } from '@apollo/client/utilities';
+import { WebSocketLink } from '@apollo/client/link/ws';
 import { setContext } from 'apollo-link-context';
+import fetch from 'node-fetch';
 
-const http = createHttpLink({
+const wsLink = new WebSocketLink({
+    uri: process.env.NODE_ENV === 'production' 
+        ? ''
+        : 'ws://localhost:4000/graphql',
+    options: { 
+        reconnect: true
+    },
+});
+
+const httpLink = new HttpLink({
     uri: process.env.NODE_ENV === 'production' 
         ? ''
         : 'http://localhost:4000/graphql',
     credentials: 'include',
-    fetchOptions: {
-        fetch
-    }
+    fetchOptions: { fetch }
 });
 
+const link = split(
+    // split based on operation type
+    ({ query }) => {
+        const definition = getMainDefinition(query);
+        return (
+            definition.kind === 'OperationDefinition' &&
+            definition.operation === 'subscription'
+        );
+    },
+    wsLink,
+    httpLink,
+);
+
 const authLink = setContext((_, {headers}) => {
-    return {
-        headers: {
-            ...headers,
-        }
-    }
+    return { headers: { ...headers, } }
 });
 
 
 const client = new ApolloClient({
     cache: new InMemoryCache({addTypename: false}),
-    link: ApolloLink.from([authLink, http]),
+    link: ApolloLink.from([link]),
     connectToDevTools: true,
 });
 
