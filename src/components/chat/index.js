@@ -16,7 +16,6 @@ const Chat = () => {
     useEffect(() => {
         if(channel){
             const { id } = channel;
-            console.log(channels);
             const index = channels.findIndex(e => e.id == id);
             if(index == -1){
                 setShowModal(true);

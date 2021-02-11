@@ -23,10 +23,10 @@ const InputArea = () => {
         }),
         onSubmit: async value => {
             try {
-                const result = await sendNewMessage({variables: {
+                await sendNewMessage({variables: {
                     input: value.message, id
                 }})
-                console.log(result);
+                formik.resetForm();
             } catch (error) {
                 console.log(error);
             }

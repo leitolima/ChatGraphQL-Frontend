@@ -17,7 +17,9 @@ const MessageArea = () => {
         variables: { id }
     });
 
-    const { data: datamessages } = useSubscription(SUBCRIPTION);
+    const { data: datamessages } = useSubscription(SUBCRIPTION, {
+        variables: { channel: id }
+    });
     console.log(datamessages);
 
     return (
