@@ -3,7 +3,8 @@ import {
     LOGIN_USER,
     SELECT_CHANNEL,
     ADD_NEW_CHANNEL,
-    JOIN_TO_CHANNEL
+    JOIN_TO_CHANNEL,
+    SET_MESSAGES
 } from '../types'
 
 const UserReducer = (state, action) => {
@@ -40,6 +41,11 @@ const UserReducer = (state, action) => {
                     ...state.channel, 
                     members: action.payload.members
                 }
+            }
+        case SET_MESSAGES: 
+            return {
+                ...state,
+                messages: action.payload
             }
         default:
             return { ...state }

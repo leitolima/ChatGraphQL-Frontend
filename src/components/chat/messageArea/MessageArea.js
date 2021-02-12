@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import UserContext from '../../../context/userContext';
 //Components
 import Messages from './Messages';
@@ -10,8 +10,10 @@ import { SUBCRIPTION } from '../../../graphql/subscription';
 
 const MessageArea = () => {
 
+    const [loaded, setLoaded] = useState(false);
+
     const context = useContext(UserContext);
-    const { channel: { id } } = context;
+    const { messages, setMessages, channel: { id } } = context;
 
     const { data } = useQuery(GET_MESSAGES, {
         variables: { id }
@@ -22,12 +24,21 @@ const MessageArea = () => {
     });
     console.log(datamessages);
 
+    useEffect(() => {
+        if(!loaded && data){
+            if(data.messages){
+                setMessages(data.messages);
+                setLoaded(true);
+            }
+        }
+    }, [data]);
+
     return (
         <>
             <div id="message_area" className="w-full flex-grow overflow-y-scroll">
                 {
-                    data && data.messages 
-                    ? <Messages msgs={data.messages}/>
+                    messages.length > 0 
+                    ? <Messages msgs={messages}/>
                     : null
                 }
             </div>

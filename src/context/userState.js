@@ -7,7 +7,8 @@ import {
     LOGIN_USER,
     SELECT_CHANNEL,
     ADD_NEW_CHANNEL,
-    JOIN_TO_CHANNEL
+    JOIN_TO_CHANNEL,
+    SET_MESSAGES
 } from '../types'
 
 const UserState = ({ children }) => {
@@ -19,6 +20,7 @@ const UserState = ({ children }) => {
         image: '',
         channels: [],
         channel: null,
+        messages: [],
         favorites: []
     }
 
@@ -51,6 +53,13 @@ const UserState = ({ children }) => {
             payload: channel
         });
     } 
+    
+    const setMessages = messages => {
+        dispatch({
+            type: SET_MESSAGES,
+            payload: messages
+        })
+    }
 
     return (
         <UserContext.Provider
@@ -63,10 +72,12 @@ const UserState = ({ children }) => {
                 channels: state.channels,
                 favorites: state.favorites,
                 channel: state.channel,
+                messages: state.messages,
                 loginUser,
                 newChannel,
                 selectChannel,
-                joinToChannel
+                joinToChannel,
+                setMessages
             }}
         >
             { children }

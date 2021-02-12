@@ -2,3 +2,4 @@ export const LOGIN_USER = 'LOGIN_USER';
 export const SELECT_CHANNEL = 'SELECT_CHANNEL';
 export const ADD_NEW_CHANNEL = 'ADD_NEW_CHANNEL';
 export const JOIN_TO_CHANNEL = 'JOIN_TO_CHANNEL';
+export const SET_MESSAGES = 'SET_MESSAGES';
