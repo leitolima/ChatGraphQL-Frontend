@@ -4,6 +4,7 @@ import UserContext from '../../../context/userContext';
 import Messages from './Messages';
 import InputArea from './InputArea';
 //GraphQL
+import client from '../../../config/apollo';
 import { useQuery, useSubscription } from '@apollo/client';
 import { GET_MESSAGES } from '../../../graphql/querys';
 import { SUBCRIPTION } from '../../../graphql/subscription';
@@ -27,6 +28,15 @@ const MessageArea = () => {
         setTimeout(el.current.scrollIntoView({ behavior: "smooth" }), 100);
     }
 
+    const updateCacheMessages = msg => {
+        client.cache.writeQuery({ 
+            query: GET_MESSAGES,
+            variables: { id },
+            data: { messages: [...messages, msg] }
+        });
+
+    } 
+
     useEffect(() => {
         if(oldmessages){
             if(oldmessages.messages){
@@ -39,6 +49,7 @@ const MessageArea = () => {
         if(newmessage){
             if(newmessage.message){
                 addNewMessage(newmessage.message);
+                updateCacheMessages(newmessage.message);
             }
         }
     }, [newmessage]);
