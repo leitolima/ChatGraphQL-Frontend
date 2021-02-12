@@ -4,7 +4,8 @@ import {
     SELECT_CHANNEL,
     ADD_NEW_CHANNEL,
     JOIN_TO_CHANNEL,
-    SET_MESSAGES
+    SET_MESSAGES,
+    SET_NEW_MESSAGE
 } from '../types'
 
 const UserReducer = (state, action) => {
@@ -46,6 +47,11 @@ const UserReducer = (state, action) => {
             return {
                 ...state,
                 messages: action.payload
+            }
+        case SET_NEW_MESSAGE: 
+            return{
+                ...state,
+                messages: [...state.messages, action.payload]
             }
         default:
             return { ...state }

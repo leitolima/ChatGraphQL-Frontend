@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
 import UserContext from '../../../context/userContext';
 //Components
 import Messages from './Messages';
@@ -10,28 +10,42 @@ import { SUBCRIPTION } from '../../../graphql/subscription';
 
 const MessageArea = () => {
 
-    const [loaded, setLoaded] = useState(false);
+    const el = useRef(null);
 
     const context = useContext(UserContext);
-    const { messages, setMessages, channel: { id } } = context;
+    const { messages, setMessages, addNewMessage, channel: { id } } = context;
 
-    const { data } = useQuery(GET_MESSAGES, {
+    const { data: oldmessages } = useQuery(GET_MESSAGES, {
         variables: { id }
     });
 
-    const { data: datamessages } = useSubscription(SUBCRIPTION, {
+    const { data: newmessage } = useSubscription(SUBCRIPTION, {
         variables: { channel: id }
     });
-    console.log(datamessages);
+
+    const scrollToBottom = () => {
+        setTimeout(el.current.scrollIntoView({ behavior: "smooth" }), 100);
+    }
 
     useEffect(() => {
-        if(!loaded && data){
-            if(data.messages){
-                setMessages(data.messages);
-                setLoaded(true);
+        if(oldmessages){
+            if(oldmessages.messages){
+                setMessages(oldmessages.messages);
             }
         }
-    }, [data]);
+    }, [oldmessages]);
+
+    useEffect(() => {
+        if(newmessage){
+            if(newmessage.message){
+                addNewMessage(newmessage.message);
+            }
+        }
+    }, [newmessage]);
+
+    useEffect(() => {
+        if(messages.length > 0) scrollToBottom()
+    }, [messages])
 
     return (
         <>
@@ -41,6 +55,7 @@ const MessageArea = () => {
                     ? <Messages msgs={messages}/>
                     : null
                 }
+                <div ref={el}></div>
             </div>
             <InputArea />
         </>

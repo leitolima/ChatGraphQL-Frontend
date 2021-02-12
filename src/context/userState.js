@@ -8,7 +8,8 @@ import {
     SELECT_CHANNEL,
     ADD_NEW_CHANNEL,
     JOIN_TO_CHANNEL,
-    SET_MESSAGES
+    SET_MESSAGES,
+    SET_NEW_MESSAGE
 } from '../types'
 
 const UserState = ({ children }) => {
@@ -61,6 +62,13 @@ const UserState = ({ children }) => {
         })
     }
 
+    const addNewMessage = message => {
+        dispatch({
+            type: SET_NEW_MESSAGE,
+            payload: message
+        })
+    }
+
     return (
         <UserContext.Provider
             value={{
@@ -77,7 +85,8 @@ const UserState = ({ children }) => {
                 newChannel,
                 selectChannel,
                 joinToChannel,
-                setMessages
+                setMessages,
+                addNewMessage
             }}
         >
             { children }
