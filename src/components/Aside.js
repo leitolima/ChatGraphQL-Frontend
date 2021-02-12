@@ -13,8 +13,8 @@ const Aside = () => {
     const { username, image, channels, favorites } = context;
 
     return (
-        <aside className="w-full md:w-1/4 bg-dark-1 py-14 px-8 text-gray">
-            <div>
+        <aside className="w-full md:w-1/4 bg-dark-1 py-7 text-gray h-screen max-h-screen md:flex md:flex-col md:flex-1">
+            <div className="pb-7 px-8">
                 <h1 className="text-3xl font-semibold">
                     <i className="fas fa-code mr-2"></i>
                     Chat App
@@ -24,7 +24,7 @@ const Aside = () => {
                     <p className="font-semibold text-lg ml-2 capitalize">{username}</p>
                 </div>
             </div>
-            <div className="flex flex-col sm:flex-row md:flex-col">
+            <div className="flex flex-col sm:flex-row md:flex-col overflow-y-auto px-8">
                 <div className="w-1/2 order-2 md:order-1 md:w-full mt-14">
                     <h2 className="text-base lg:text-xl uppercase font-semibold">
                         <i className="fas fa-star mr-2"></i>Favorites
