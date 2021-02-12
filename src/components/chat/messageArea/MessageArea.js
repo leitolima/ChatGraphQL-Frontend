@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import UserContext from '../../../context/userContext';
 //Components
 import Messages from './Messages';
@@ -16,7 +16,9 @@ const MessageArea = () => {
     const context = useContext(UserContext);
     const { messages, setMessages, addNewMessage, channel: { id } } = context;
 
-    const { data: oldmessages } = useQuery(GET_MESSAGES, {
+    const [fetch, setFecth] = useState(false);
+
+    const { data: oldmessages, refetch } = useQuery(GET_MESSAGES, {
         variables: { id }
     });
 
@@ -25,7 +27,7 @@ const MessageArea = () => {
     });
 
     const scrollToBottom = () => {
-        setTimeout(el.current.scrollIntoView({ behavior: "smooth" }), 100);
+        el.current.scrollTop = el.current.scrollHeight;
     }
 
     const updateCacheMessages = msg => {
@@ -34,8 +36,12 @@ const MessageArea = () => {
             variables: { id },
             data: { messages: [...messages, msg] }
         });
-
     } 
+
+    useEffect(() => {
+        const result = client.cache.readQuery({ query: GET_MESSAGES, variables: { id } })
+        if(result){ refetch(); }
+    }, [id]);
 
     useEffect(() => {
         if(oldmessages){
@@ -55,18 +61,19 @@ const MessageArea = () => {
     }, [newmessage]);
 
     useEffect(() => {
-        if(messages.length > 0) scrollToBottom()
+        if(messages.length > 0){
+            scrollToBottom();
+        } 
     }, [messages])
 
     return (
         <>
-            <div id="message_area" className="w-full flex-grow overflow-y-scroll">
+            <div id="message_area" ref={el} className="w-full flex-grow overflow-y-scroll">
                 {
                     messages.length > 0 
                     ? <Messages msgs={messages}/>
                     : null
                 }
-                <div ref={el}></div>
             </div>
             <InputArea />
         </>
