@@ -32,7 +32,7 @@ const Aside = () => {
                     <nav className="list-none mt-2">
                         {
                             favorites.length ? favorites.map(c => (
-                                <li># JavaScript</li>
+                                <li key={c.id}><Link to={`/channel/${c.id}`}># {c.name}</Link></li>
                             )) : <li>Add a channel to fav</li>
                         }
                     </nav>

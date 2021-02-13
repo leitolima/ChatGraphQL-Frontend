@@ -12,6 +12,10 @@ export const GET_USER = gql`
                 id
                 name
             }
+            favorites{
+                id
+                name
+            }
         }
     }
 `;

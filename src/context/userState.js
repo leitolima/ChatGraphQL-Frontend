@@ -9,7 +9,9 @@ import {
     ADD_NEW_CHANNEL,
     JOIN_TO_CHANNEL,
     SET_MESSAGES,
-    SET_NEW_MESSAGE
+    SET_NEW_MESSAGE,
+    ADD_FAVORITE,
+    DELETE_FAVORITE
 } from '../types'
 
 const UserState = ({ children }) => {
@@ -31,7 +33,7 @@ const UserState = ({ children }) => {
         dispatch({
             type: LOGIN_USER,
             payload: user
-        })
+        });
     }
 
     const newChannel = channel => {
@@ -45,7 +47,7 @@ const UserState = ({ children }) => {
         dispatch({
             type: SELECT_CHANNEL,
             payload: channel
-        })
+        });
     }
 
     const joinToChannel = channel => {
@@ -59,14 +61,28 @@ const UserState = ({ children }) => {
         dispatch({
             type: SET_MESSAGES,
             payload: messages
-        })
+        });
     }
 
     const addNewMessage = message => {
         dispatch({
             type: SET_NEW_MESSAGE,
             payload: message
-        })
+        });
+    }
+
+    const addFavorite = channel => {
+        dispatch({
+            type: ADD_FAVORITE,
+            payload: channel
+        });
+    }
+
+    const deleteFavorite = channel => {
+        dispatch({
+            type: DELETE_FAVORITE,
+            payload: channel
+        });
     }
 
     return (
@@ -86,7 +102,9 @@ const UserState = ({ children }) => {
                 selectChannel,
                 joinToChannel,
                 setMessages,
-                addNewMessage
+                addNewMessage,
+                addFavorite,
+                deleteFavorite
             }}
         >
             { children }

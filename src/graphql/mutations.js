@@ -69,3 +69,15 @@ export const JOIN_TO_CHANNEL = gql`
         }
     }
 `;
+
+export const ADD_CHANNEL_FAVORITE = gql`
+    mutation addToFavorites($id: ID){
+        addToFavorites(id: $id)
+    }
+`;
+
+export const DELETE_CHANNEL_FAVORITE = gql`
+    mutation deleteFromFavorites($id: ID){
+        deleteFromFavorites(id: $id)
+    }
+`;

@@ -5,7 +5,9 @@ import {
     ADD_NEW_CHANNEL,
     JOIN_TO_CHANNEL,
     SET_MESSAGES,
-    SET_NEW_MESSAGE
+    SET_NEW_MESSAGE,
+    ADD_FAVORITE,
+    DELETE_FAVORITE
 } from '../types'
 
 const UserReducer = (state, action) => {
@@ -19,7 +21,8 @@ const UserReducer = (state, action) => {
                 lastname: action.payload.lastname,
                 username: action.payload.username,
                 image: action.payload.image,
-                channels: action.payload.channels
+                channels: action.payload.channels,
+                favorites: action.payload.favorites
             }
         case ADD_NEW_CHANNEL:
             return {
@@ -52,6 +55,16 @@ const UserReducer = (state, action) => {
             return{
                 ...state,
                 messages: [...state.messages, action.payload]
+            }
+        case ADD_FAVORITE: 
+            return{
+                ...state,
+                favorites: [...state.favorites, action.payload]
+            }
+        case DELETE_FAVORITE: 
+            return{
+                ...state,
+                favorites: state.favorites.filter(ch => ch.id !== action.payload)
             }
         default:
             return { ...state }
