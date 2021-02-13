@@ -10,7 +10,7 @@ const withAuth = ( Component ) => {
         const context = useContext(UserContext);
         const { loginUser } = context;
 
-        const {data, loading, error} = useQuery(GET_USER);
+        const {data, loading, error, refetch} = useQuery(GET_USER);
 
         useEffect(() => {
             if(data){

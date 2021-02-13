@@ -27,23 +27,6 @@ export const CREATE_NEW_CHANNEL = gql`
         channel: createNewChannel(input: $input){
             id
             name
-            description
-            creator{ 
-                username 
-                image 
-            }
-            members{ 
-                username 
-                image 
-            }
-            messages{
-                user{ 
-                    username 
-                    image 
-                }
-                text
-                media
-            }
         }
     }
 `;
@@ -81,3 +64,9 @@ export const DELETE_CHANNEL_FAVORITE = gql`
         deleteFromFavorites(id: $id)
     }
 `;
+
+export const DELETE_CHANNEL = gql`
+    mutation goOutFromChannel($id: ID){
+        goOutFromChannel(id: $id)
+    }
+`

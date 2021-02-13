@@ -6,3 +6,4 @@ export const SET_MESSAGES = 'SET_MESSAGES';
 export const SET_NEW_MESSAGE = 'SET_NEW_MESSAGE';
 export const ADD_FAVORITE = 'ADD_FAVORITE';
 export const DELETE_FAVORITE = 'DELETE_FAVORITE';
+export const DELETE_CHANNEL = 'DELETE_CHANNEL';

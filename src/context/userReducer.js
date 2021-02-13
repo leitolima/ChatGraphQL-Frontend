@@ -7,7 +7,8 @@ import {
     SET_MESSAGES,
     SET_NEW_MESSAGE,
     ADD_FAVORITE,
-    DELETE_FAVORITE
+    DELETE_FAVORITE,
+    DELETE_CHANNEL
 } from '../types'
 
 const UserReducer = (state, action) => {
@@ -65,6 +66,13 @@ const UserReducer = (state, action) => {
             return{
                 ...state,
                 favorites: state.favorites.filter(ch => ch.id !== action.payload)
+            }
+        case DELETE_CHANNEL: 
+            return{
+                ...state,
+                channel: null,
+                messages: [],
+                channels: state.channels.filter(ch => ch.id !== action.payload)
             }
         default:
             return { ...state }

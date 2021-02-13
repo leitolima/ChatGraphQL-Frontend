@@ -8,18 +8,34 @@ import SubmitButton from '../submitButton';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
 //GraphQL
+import client from '../../config/apollo';
 import { useMutation } from '@apollo/client';
 import { CREATE_NEW_CHANNEL } from '../../graphql/mutations';
+import { GET_USER } from '../../graphql/querys';
 
 const NewChannel = ({show, closeModal}) => {
 
     const history = useHistory();
 
+    const context = useContext(UserContext);
+    const { newChannel } = context;
+
     const [error, setError] = useState(null);
     const [createNewChannel] = useMutation(CREATE_NEW_CHANNEL);
 
-    const context = useContext(UserContext);
-    const { newChannel } = context;
+    const updateCacheChannels = async newch => {
+        var { user } = await client.cache.readQuery({ 
+            query: GET_USER
+        });
+        client.cache.writeQuery({ 
+            query: GET_USER,
+            data: { 
+                user: { channels: [...user.channels, newch] }
+            }
+        });
+        closeModal();
+        history.push(`/channel/${newch.id}`);
+    }
 
     const formik = useFormik({
         initialValues: {
@@ -34,14 +50,13 @@ const NewChannel = ({show, closeModal}) => {
         onSubmit: async values => {
             setError(null);
             try {
-                const { data: { channel } } = await createNewChannel({
+                const { data: { channel: newchannel } } = await createNewChannel({
                     variables: {
                         input: values
                     }
                 });
-                newChannel(channel);
-                closeModal();
-                history.push(`/channel/${channel.id}`);
+                newChannel(newchannel);
+                updateCacheChannels(newchannel);
             } catch (err) {
                 setError(err.message.replace('Error: ', ''));
             }

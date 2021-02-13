@@ -11,7 +11,8 @@ import {
     SET_MESSAGES,
     SET_NEW_MESSAGE,
     ADD_FAVORITE,
-    DELETE_FAVORITE
+    DELETE_FAVORITE,
+    DELETE_CHANNEL
 } from '../types'
 
 const UserState = ({ children }) => {
@@ -85,6 +86,13 @@ const UserState = ({ children }) => {
         });
     }
 
+    const deleteChannel = channel => {
+        dispatch({
+            type: DELETE_CHANNEL,
+            payload: channel
+        })
+    }
+
     return (
         <UserContext.Provider
             value={{
@@ -104,7 +112,8 @@ const UserState = ({ children }) => {
                 setMessages,
                 addNewMessage,
                 addFavorite,
-                deleteFavorite
+                deleteFavorite,
+                deleteChannel
             }}
         >
             { children }
