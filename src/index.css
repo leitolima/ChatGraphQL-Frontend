@@ -4,35 +4,33 @@
 @tailwind components;
 @tailwind utilities;
 
-body{background: #171D20;}
+:root{
+    --dark-background: #18191a;
+    --dark-area: #242526;
+    --dark-input: #3A3B3C; 
+    --gray-text: #e4e6eb;
+    --gray-subtext: #b0b3b8;
+    --gray-border: #3e4042;
+}
+body, aside, section{
+    background-color: var(--dark-background);
+}
 /* Colors */
-.bg-blue{background-color: #002D40;}
-.text-blue{color: #002D40;}
-.border-blue{border-color: #002D40;}
-.hover\:bg-blue:hover{background-color: #002D40;}
-.hover\:text-blue:hover{color: #002D40;}
-
 .bg-lightblue{background-color: #1AA6B7;}
 .text-lightblue{color: #1AA6B7;}
 .border-lightblue{border-color: #1AA6B7;}
 .hover\:bg-lightblue:hover{background-color: #1AA6B7;}
 .hover\:text-lightblue:hover{color: #1AA6B7;}
 
-.bg-iceberg{background-color: #D9ECF2;}
-.text-iceberg{color: #D9ECF2;}
-.border-iceberg{border-color: #D9ECF2;}
-.hover\:bg-iceberg:hover{background-color: #D9ECF2;}
-.hover\:text-iceberg:hover{color: #D9ECF2;}
-
-.bg-gray{background-color: #ecf2f3;}
-.text-gray{color: #ecf2f3;}
-.border-gray{border-color: #ecf2f3;}
-.hover\:bg-gray:hover{background-color: #ecf2f3;}
-.hover\:text-gray:hover{color: #ecf2f3;}
-
-.bg-dark-1{background-color: #171D20;}
-.bg-dark-2{background-color: #1E2529;}
-.bg-dark-3{background-color: rgba(0, 0, 0, 0.1);}
+/* Text */
+.text-gray{color: var(--gray-text);}
+.subtext-gray{color: var(--gray-subtext);}
+/* Background */
+.bg-dark-area{background-color: var(--dark-area);}
+.bg-gray{background-color: var(--gray-text);}
+.bg-input{background-color: var(--dark-input);}
+/* Border */
+.border-gray{border-color: var(--gray-border);}
 
 /* Fonts */
 .roboto, h1, h2, h3, h4{font-family: 'Roboto', sans-serif;}
@@ -44,7 +42,7 @@ body{background: #171D20;}
     }
 }
 
-#message_area::-webkit-scrollbar {width: 8px;height: 8px;}
+#message_area::-webkit-scrollbar {width: 8px;height: 8px; display: none;}
 #message_area::-webkit-scrollbar-thumb {background: #ccc;border-radius: 4px;}
 #message_area::-webkit-scrollbar-thumb:hover {background: #b3b3b3;box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);}
 #message_area::-webkit-scrollbar-thumb:active {background-color: #999999;}
@@ -59,3 +57,9 @@ aside ::-webkit-scrollbar-thumb:active {background-color: #999999;}
 aside ::-webkit-scrollbar-track {background: #e1e1e1;border-radius: 4px;}
 aside ::-webkit-scrollbar-track:hover,
 aside ::-webkit-scrollbar-track:active {background: #d4d4d4;}
+
+.bg-image{
+    background-image: url('assets/space.jpg');
+    background-position: center;
+    background-size: cover;
+}

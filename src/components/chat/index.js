@@ -24,12 +24,12 @@ const Chat = () => {
     }, [channel]);
 
     return (
-        <section className="w-full md:w-3/4 lg:w-1/2 bg-gray px-4 py-4 flex flex-col h-screen">
+        <section className="w-full md:w-3/4 lg:w-1/2 px-4 py-4 flex flex-col h-screen">
             {
                 channel 
                 ? <>
                     <Header />
-                    <article className="flex flex-col overflow-y-auto flex-1 max-h-screen bg-white border border-gray-300 mt-3">
+                    <article className="flex flex-col overflow-y-auto flex-1 max-h-screen bg-dark-area rounded-b-lg px-3">
                         <MessageArea />
                     </article>
                     {showModal && <JoinToChannel show={showModal} closeModal={closeModal}/>}

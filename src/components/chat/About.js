@@ -8,13 +8,13 @@ const About = () => {
     const { channel } = context;
 
     return (
-        <aside className="hidden lg:block lg:w-1/4 bg-gray px-4 py-4">
+        <aside className="hidden lg:block lg:w-1/4 px-4 py-4">
             {
                 channel 
                 ? <>
-                    <div className="bg-white border border-gray-300 rounded">
+                    <div className="bg-dark-area rounded-lg">
                         <header className="p-3">
-                            <h1 className="text-2xl tracking-normal font-bold text-gray-700">
+                            <h1 className="text-2xl tracking-normal font-bold text-gray">
                                 About Channel
                             </h1>
                         </header>

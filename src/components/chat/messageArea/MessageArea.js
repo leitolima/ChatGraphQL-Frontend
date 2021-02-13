@@ -68,7 +68,7 @@ const MessageArea = () => {
 
     return (
         <>
-            <div id="message_area" ref={el} className="w-full flex-grow overflow-y-scroll">
+            <div id="message_area" ref={el} className="w-full flex-grow overflow-y-scroll border border-gray rounded-lg mb-2 bg-image">
                 {
                     messages.length > 0 
                     ? <Messages msgs={messages}/>

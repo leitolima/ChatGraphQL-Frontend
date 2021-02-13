@@ -10,7 +10,7 @@ import { SEND_NEW_MESSAGE } from '../../../graphql/mutations';
 const InputArea = () => {
 
     const context = useContext(UserContext);
-    const { channel: { id } } = context;
+    const { image, channel: { id } } = context;
 
     const [sendNewMessage] = useMutation(SEND_NEW_MESSAGE);
 
@@ -36,24 +36,21 @@ const InputArea = () => {
     return (
         <div className="w-full">
             <form onSubmit={formik.handleSubmit}>
-                <input 
-                    type="text" 
-                    id="message" 
-                    value={formik.values.message}
-                    onChange={formik.handleChange}
-                    placeholder="Type your message..." 
-                    className="w-full border-t border-gray-300 py-2 px-4 text-gray-800 focus:outline-none"
-                />
-                <div className="flex h-10 flex-row">
-                    <button 
-                        type="submit"
-                        className="w-1/2 text-center bg-yellow-500 hover:bg-yellow-600 focus:outline-none uppercase text-white font-semibold"
-                    >Reply</button>
-                    <button
-                        type="button"
-                        className="w-1/2 text-center bg-green-500 hover:bg-green-600 focus:outline-none uppercase text-white font-semibold"
-                    >Media</button>
+                <div className="flex flex-row items-center mb-2">
+                    <img src={image} className="rounded-full w-9 h-9 mr-2 object-cover" alt=""/>
+                    <input 
+                        type="text" 
+                        id="message" 
+                        value={formik.values.message}
+                        onChange={formik.handleChange}
+                        placeholder="Type your message..." 
+                        className="w-full cursor-text bg-input py-2 px-4 text-gray focus:outline-none rounded-full"
+                    />
                 </div>
+                <button 
+                    type="submit"
+                    className="w-1/2 text-center bg-yellow-500 hover:bg-yellow-600 focus:outline-none uppercase text-white font-semibold hidden"
+                >Reply</button>
             </form>
         </div>
     )

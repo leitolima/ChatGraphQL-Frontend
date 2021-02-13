@@ -20,7 +20,7 @@ const Aside = () => {
                     Chat App
                 </h1>
                 <div className="flex flex-row items-center mt-3">
-                    <img src={image} className="w-12 h-12 rounded-full" alt=""/>
+                    <img src={image} className="w-12 h-12 rounded-full object-cover" alt=""/>
                     <p className="font-semibold text-lg ml-2 capitalize">{username}</p>
                 </div>
             </div>
