@@ -53,7 +53,7 @@ const NewChannel = ({show, closeModal}) => {
             <div className={`${show ? 'block' : 'hidden'} w-full h-full bg-black opacity-50 z-20`} onClick={closeModal}></div>
             <form 
                 onSubmit={formik.handleSubmit} 
-                className="fixed bg-dark-2 w-full sm:w-3/4 md:w-1/2 lg:w-1/3 border border-gray-700 py-6 px-5 rounded z-30"
+                className="fixed bg-dark-modal w-full sm:w-3/4 md:w-1/2 lg:w-1/3 border border-gray-700 py-6 px-5 rounded z-30"
             >
                 <FormInput formik={formik} label="Name to your channel" id="name"/>
                 <FormInput formik={formik} label="Description" id="description"/>

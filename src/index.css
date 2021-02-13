@@ -8,6 +8,7 @@
     --dark-background: #18191a;
     --dark-area: #242526;
     --dark-input: #3A3B3C; 
+    --dark-modal: #1E2529;
     --gray-text: #e4e6eb;
     --gray-subtext: #b0b3b8;
     --gray-border: #3e4042;
@@ -29,6 +30,7 @@ body, aside, section{
 .bg-dark-area{background-color: var(--dark-area);}
 .bg-gray{background-color: var(--gray-text);}
 .bg-input{background-color: var(--dark-input);}
+.bg-dark-modal{background-color: var(--dark-modal);}
 /* Border */
 .border-gray{border-color: var(--gray-border);}
 
