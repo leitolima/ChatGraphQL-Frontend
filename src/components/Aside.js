@@ -13,7 +13,7 @@ const Aside = () => {
     const { username, image, channels, favorites } = context;
 
     return (
-        <aside className="w-full md:w-1/4 bg-dark-1 py-7 text-gray h-screen max-h-screen md:flex md:flex-col md:flex-1">
+        <aside id="left_aside" className="w-full md:w-1/4 bg-dark-1 py-7 text-gray h-screen max-h-screen md:flex md:flex-col md:flex-1">
             <div className="pb-7 px-8">
                 <h1 className="text-3xl font-semibold">
                     <i className="fas fa-code mr-2"></i>
@@ -39,9 +39,8 @@ const Aside = () => {
                 </div>
                 <div className="w-1/2 order-1 md:order-2 md:w-full mt-14">
                     <h2 className="text-base lg:text-xl uppercase font-semibold">
-                        <i className="fas fa-exchange-alt mr-2"></i>
+                        <i className="fas fa-plus mr-2 cursor-pointer" onClick={() => setShowModal(true)}></i>
                         Channels ({channels.length})
-                        <i className="fas fa-plus ml-4 cursor-pointer" onClick={() => setShowModal(true)}></i>
                     </h2>
                     <nav className="list-none mt-2">
                         {

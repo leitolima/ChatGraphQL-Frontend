@@ -52,13 +52,9 @@ body, aside, section{
 #message_area::-webkit-scrollbar-track:hover,
 #message_area::-webkit-scrollbar-track:active {background: #d4d4d4;}
 
-aside ::-webkit-scrollbar {width: 6px;height: 6px;}
-aside ::-webkit-scrollbar-thumb {background: #ccc;}
-aside ::-webkit-scrollbar-thumb:hover {background: #b3b3b3;box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);}
-aside ::-webkit-scrollbar-thumb:active {background-color: #999999;}
-aside ::-webkit-scrollbar-track {background: #e1e1e1;border-radius: 4px;}
-aside ::-webkit-scrollbar-track:hover,
-aside ::-webkit-scrollbar-track:active {background: #d4d4d4;}
+#left_aside ::-webkit-scrollbar {width: 6px; display: none;}
+#left_aside:hover ::-webkit-scrollbar{display: block;}
+#left_aside ::-webkit-scrollbar-thumb {background: #ccc;width: 4px;border: 2px solid transparent;border-radius: 5px;}
 
 .bg-image{
     background-image: url('assets/space.jpg');
