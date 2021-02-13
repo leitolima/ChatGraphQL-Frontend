@@ -1,6 +1,6 @@
 import React from 'react';
 import Message from './Message';
-import NoMessages from './NoMessages';
+import NoChat from '../NoChat';
 
 const Messages = ({ msgs }) => {
     return (
@@ -9,7 +9,7 @@ const Messages = ({ msgs }) => {
                 msgs.length > 0
                 ? msgs.map(m => (
                     <Message key={m.id} msg={m}/>
-                )) : <NoMessages />
+                )) : <NoChat label="No messages in this channel yet" css=""/>
             }
         </>
     )
