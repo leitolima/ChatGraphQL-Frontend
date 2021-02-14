@@ -3,11 +3,10 @@ import { getMainDefinition } from '@apollo/client/utilities';
 import { WebSocketLink } from '@apollo/client/link/ws';
 import { setContext } from 'apollo-link-context';
 import fetch from 'node-fetch';
-import { URL } from './const';
 
 const wsLink = new WebSocketLink({
     uri: process.env.NODE_ENV === 'production' 
-        ? `ws://${URL}`
+        ? 'ws://chat-api-backend.herokuapp.com'
         : 'ws://localhost:4000/graphql',
     options: { 
         reconnect: true
@@ -16,7 +15,7 @@ const wsLink = new WebSocketLink({
 
 const httpLink = new HttpLink({
     uri: process.env.NODE_ENV === 'production' 
-        ? `https://${URL}`
+        ? 'https://chat-api-backend.herokuapp.com'
         : 'http://localhost:4000/graphql',
     credentials: 'include',
     fetchOptions: { fetch }
