@@ -6,7 +6,7 @@ import fetch from 'node-fetch';
 
 const wsLink = new WebSocketLink({
     uri: process.env.NODE_ENV === 'production' 
-        ? 'ws://chat-api-backend.herokuapp.com'
+        ? 'wss://chat-api-backend.herokuapp.com'
         : 'ws://localhost:4000/graphql',
     options: { 
         reconnect: true
